@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+
+  h5 {
+    @apply text-xl font-semibold;
+  }
+
+  h6 {
+    @apply text-lg font-semibold;
+  }
+}
+
+@layer utilities {
+  .container-app {
+    @apply max-w-[640px] w-full mx-auto px-4 min-h-screen;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-[22px];
+  }
+}

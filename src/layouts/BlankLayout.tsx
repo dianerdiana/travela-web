@@ -1,13 +1,17 @@
 import React from "react";
 
-const BlankLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const BlankLayout: React.FC<{
+  children: React.ReactNode;
+  paddingBottom?: string;
+}> = ({ children, paddingBottom = "120px" }) => {
   return (
-    <section
-      id="content"
-      className="max-w-[640px] w-full mx-auto min-h-screen flex flex-col gap-8"
+    <div
+      id="layout"
+      className={`container-app flex flex-col gap-8 bg-vista-500`}
+      style={{ paddingBottom }}
     >
       {children}
-    </section>
+    </div>
   );
 };
 
