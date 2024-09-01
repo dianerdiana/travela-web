@@ -5,9 +5,9 @@ import BlankLayout from "@/layouts/BlankLayout";
 import Image from "next/image";
 
 // ** Validation
-import FormLogin from "./form";
+import FormLogin from "./FormLogin";
 
-export default function SignIn() {
+export default function Login() {
   return (
     <BlankLayout paddingBottom="46px">
       <header className="pt-11 px-4 flex justify-center">

@@ -1,8 +1,5 @@
 "use client";
 
-// ** Layout
-import BlankLayout from "@/layouts/BlankLayout";
-
 // ** Next
 import Link from "next/link";
 
@@ -13,6 +10,7 @@ import { z } from "zod";
 
 // ** Validation
 import { loginSchema } from "@/lib/validations/login";
+import InputIconLeft from "@/components/form/InputIconLeft";
 
 export default function FormLogin() {
   const {
@@ -47,25 +45,15 @@ export default function FormLogin() {
             control={control}
             name="email"
             render={({ field }) => (
-              <div
-                className={`flex items-center gap-3 p-[16px_12px] border rounded-xl transition-all duration-300 ${
-                  errors.email
-                    ? "border-red-500 focus-within:border-red-400"
-                    : "border-secondary-200 focus-within:border-primary-400 "
-                }`}
-              >
-                <div className="w-4 h-4 flex shrink-0">
-                  <img src="/assets/icons/sms.svg" alt="email-icon" />
-                </div>
-                <input
-                  {...field}
-                  type="email"
-                  className="appearance-none outline-none w-full text-sm placeholder:text-secondary-200 tracking-[0.35px]"
-                  placeholder="Your email address"
-                  aria-invalid={errors.email && true}
-                  aria-describedby="err-email"
-                />
-              </div>
+              <InputIconLeft
+                {...field}
+                name={field.name}
+                type="email"
+                placeholder="Your email address"
+                isInvalid={errors.email && true}
+                describedBy="err-email"
+                iconSrc="/assets/icons/sms.svg"
+              />
             )}
           />
           <span id="err-email" className="text-red-500 text-sm">
@@ -80,25 +68,15 @@ export default function FormLogin() {
             control={control}
             name="password"
             render={({ field }) => (
-              <div
-                className={`flex items-center gap-3 p-[16px_12px] border rounded-xl transition-all duration-300 ${
-                  errors.password
-                    ? "border-red-500 focus-within:border-red-400"
-                    : "border-secondary-200 focus-within:border-primary-400 "
-                }`}
-              >
-                <div className="w-4 h-4 flex shrink-0">
-                  <img src="/assets/icons/lock.svg" alt="password-icon" />
-                </div>
-                <input
-                  {...field}
-                  type="password"
-                  className="appearance-none outline-none w-full text-sm placeholder:text-secondary-200 tracking-[0.35px]"
-                  placeholder="Enter your valid password"
-                  aria-invalid={errors.password && true}
-                  aria-describedby="err-password"
-                />
-              </div>
+              <InputIconLeft
+                {...field}
+                name={field.name}
+                type="password"
+                placeholder="Enter your valid password"
+                isInvalid={errors.password && true}
+                describedBy="err-password"
+                iconSrc="/assets/icons/sms.svg"
+              />
             )}
           />
           <span id="err-password" className="text-red-500 text-sm">
