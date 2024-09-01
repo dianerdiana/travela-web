@@ -1,14 +1,13 @@
-import React from "react";
-
 // ** Layout
 import BlankLayout from "@/layouts/BlankLayout";
 
 // ** Next
 import Image from "next/image";
 
-const SignInLayout: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+// ** Validation
+import FormLogin from "./form";
+
+export default function SignIn() {
   return (
     <BlankLayout paddingBottom="46px">
       <header className="pt-11 px-4 flex justify-center">
@@ -21,9 +20,11 @@ const SignInLayout: React.FC<{ children: React.ReactNode }> = ({
           priority
         />
       </header>
-      <main>{children}</main>
+      <main>
+        <section id="auth-login">
+          <FormLogin />
+        </section>
+      </main>
     </BlankLayout>
   );
-};
-
-export default SignInLayout;
+}
