@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // ** Validation
 import { signUpSchema, SignUpFormData, defaultValues } from "@/lib/validations/sign-up";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function FormSignUp() {
   // ** Hooks
@@ -23,14 +23,30 @@ export default function FormSignUp() {
     mode: "onSubmit",
   });
 
+  const avatarRef = useRef<HTMLInputElement>(null);
+  const chooseFileRef = useRef<HTMLDivElement>(null);
+
   // ** State
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [avatarFile, setAvatarFile] = useState("");
 
   const onSubmit = (data: SignUpFormData) => {
-    console.log(data);
+    const formData = new FormData();
+
+    formData.append("fullName", data.fullName);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("confirmPassword", data.confirmPassword);
+
+    if (data.avatar && data.avatar.length > 0) {
+      formData.append("avatar", data.avatar[0]);
+    }
+    console.log(data, formData);
   };
 
+  const handleChangeAvatar = () => avatarRef.current?.click();
   const toggleShowPassword = () => setShowPassword((prevState) => !prevState);
   const toggleShowConfirmPassword = () => setShowConfirmPassword((prevState) => !prevState);
 
@@ -43,6 +59,60 @@ export default function FormSignUp() {
         </p>
       </div>
       <div className="flex flex-col max-w-[311px] w-full gap-[15px]">
+        <div className="form-input">
+          <label htmlFor="avatar" className="font-semibold">
+            Avatar
+          </label>
+          <Controller
+            control={control}
+            name="avatar"
+            render={({ field }) => (
+              <div className={`input-wrapper ${errors.avatar ? "input-border-invalid" : "input-border"}`}>
+                <div className="input-icon">
+                  <img src="assets/icons/gallery-2.svg" alt="icon" />
+                </div>
+                <button type="button" id="upload-file" className="flex items-center gap-3" onClick={handleChangeAvatar}>
+                  <div
+                    ref={chooseFileRef}
+                    className="input-border bg-secondary-50 py-1 px-2 rounded-lg text-nowrap text-sm leading-[22px] tracking-035 h-fit"
+                  >
+                    Choose File
+                  </div>
+                  <div>
+                    <p className="text-nowrap text-secondary-200 text-sm tracking-035 leading-[22px] text-left">
+                      {avatarFile ? avatarFile : "No file choosen"}
+                    </p>
+                    <div id="file-info" className="flex flex-row flex-nowrap gap-3 items-center">
+                      <span id="fileName" className="text-sm tracking-035 leading-[22px] text-nowrap"></span>
+                    </div>
+                  </div>
+                  <input
+                    ref={avatarRef}
+                    id="avatar"
+                    type="file"
+                    name={field.name}
+                    className="hidden"
+                    accept="png|PNG|jpg|JPG|jpeg|JPEG"
+                    onChange={(e) => {
+                      const files = e.target.files;
+
+                      if (files !== null && files.length > 0) {
+                        chooseFileRef.current?.classList.add("hidden");
+
+                        const fileName = files[0].name;
+                        setAvatarFile(String(fileName));
+                        field.onChange(files);
+                      }
+                    }}
+                  />
+                </button>
+              </div>
+            )}
+          />
+          <span id="err-avatar" className="text-red-500 text-sm">
+            {errors.avatar && errors.avatar.message}
+          </span>
+        </div>
         <div className="form-input">
           <label htmlFor="fullName" className="font-semibold">
             Full Name
