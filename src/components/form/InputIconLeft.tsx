@@ -32,6 +32,7 @@ export default function InputIconLeft({
       </div>
       <input
         {...props}
+        id={name}
         type={type}
         className="appearance-none outline-none w-full text-sm placeholder:text-secondary-200 tracking-[0.35px]"
         placeholder={placeholder}

@@ -5,15 +5,15 @@ import BlankLayout from "@/layouts/BlankLayout";
 import Image from "next/image";
 
 // ** Validation
-import FormLogin from "./FormLogin";
+import FormSignUp from "./FormSignUp";
 
-export default function Login() {
+export default function SignUp() {
   return (
     <BlankLayout paddingBottom="46px">
       <header className="pt-11 px-4 flex justify-center">
         <Image
-          src="/assets/backgrounds/sign-in.png"
-          alt="Sign-In-Illustration"
+          src="/assets/backgrounds/sign-up.png"
+          alt="Sign-Up-Illustration"
           width={560}
           height={417}
           className="w-full h-auto"
@@ -21,8 +21,8 @@ export default function Login() {
         />
       </header>
       <main>
-        <section id="auth-login">
-          <FormLogin />
+        <section id="auth-register">
+          <FormSignUp />
         </section>
       </main>
     </BlankLayout>

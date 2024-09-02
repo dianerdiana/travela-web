@@ -16,14 +16,36 @@
   }
 }
 
-@layer utilities {
-  .container-app {
-    @apply max-w-[640px] w-full mx-auto px-4 min-h-screen;
-  }
-}
-
 @layer components {
   .card {
     @apply bg-white rounded-[22px];
   }
+}
+
+.container-app {
+  @apply max-w-[640px] w-full mx-auto px-4 min-h-screen;
+}
+
+.form-input {
+  @apply flex flex-col gap-1 w-full;
+}
+
+.input-wrapper {
+  @apply flex items-center gap-3 p-[16px_12px] border rounded-xl transition-all duration-300;
+}
+
+.input-icon {
+  @apply w-4 h-4 flex shrink-0;
+}
+
+.input-border {
+  @apply border-secondary-200 focus-within:border-primary-400;
+}
+
+.input-border-invalid {
+  @apply border-red-500 focus-within:border-red-400;
+}
+
+.input-appearance-none {
+  @apply appearance-none outline-none w-full text-sm placeholder:text-secondary-200 tracking-[0.35px];
 }
