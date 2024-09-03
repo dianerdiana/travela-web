@@ -6,17 +6,13 @@ import Link from "next/link";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-
 // import required modules
 import { FreeMode } from "swiper/modules";
 
 export default function TripRecommendations() {
   return (
-    <Swiper slidesPerView={2} spaceBetween={16} freeMode={true} modules={[FreeMode]} className="w-full">
-      <SwiperSlide className="w-[288px]">
+    <Swiper slidesPerView={2} freeMode={true} modules={[FreeMode]} className="w-full" wrapperClass="gap-4">
+      <SwiperSlide className="max-w-[288px]">
         <Link href="details" className="group">
           <div className="w-full p-4 flex flex-col gap-3 rounded-[26px] bg-white shadow-[6px_8px_20px_0_#00000008]">
             <div className="w-full h-[330px] rounded-xl flex shrink-0 overflow-hidden">
@@ -49,7 +45,7 @@ export default function TripRecommendations() {
           </div>
         </Link>
       </SwiperSlide>
-      <SwiperSlide className="w-[288px]">
+      <SwiperSlide className="max-w-[288px]">
         <Link href="details" className="group">
           <div className="w-full p-4 flex flex-col gap-3 rounded-[26px] bg-white shadow-[6px_8px_20px_0_#00000008]">
             <div className="w-full h-[330px] rounded-xl flex shrink-0 overflow-hidden">
@@ -82,7 +78,7 @@ export default function TripRecommendations() {
           </div>
         </Link>
       </SwiperSlide>
-      <SwiperSlide className="w-[288px]">
+      <SwiperSlide className="max-w-[288px]">
         <Link href="details" className="group">
           <div className="w-full p-4 flex flex-col gap-3 rounded-[26px] bg-white shadow-[6px_8px_20px_0_#00000008]">
             <div className="w-full h-[330px] rounded-xl flex shrink-0 overflow-hidden">

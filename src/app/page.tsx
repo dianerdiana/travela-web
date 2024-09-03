@@ -1,11 +1,15 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
+import dynamic from "next/dynamic";
 
 // ** Layout
 import BlankLayout from "@/layouts/BlankLayout";
 
 // ** Components
-const Categories = lazy(() => import("./Categories"));
-const TripRecommendations = lazy(() => import("./TripRecommendations"));
+const Categories = dynamic(() => import("./Categories"));
+const TripRecommendations = dynamic(() => import("./TripRecommendations"));
+const Discover = dynamic(() => import("./Discover"));
+const Explore = dynamic(() => import("./Explore"));
+const FloatNav = dynamic(() => import("./FloatNav"));
 
 export default function Home() {
   return (
@@ -40,6 +44,14 @@ export default function Home() {
         <h2 className="font-semibold">Trip Recommendations</h2>
         <TripRecommendations />
       </div>
+      <div id="discover">
+        <Discover />
+      </div>
+      <div id="explore" className="flex flex-col px-4 gap-3">
+        <h2 className="font-semibold">More to Explore</h2>
+        <Explore />
+      </div>
+      <FloatNav />
     </BlankLayout>
   );
 }
