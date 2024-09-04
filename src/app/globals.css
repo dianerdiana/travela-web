@@ -27,6 +27,10 @@
   @apply max-w-[640px] w-full mx-auto px-4 min-h-screen;
 }
 
+.container-float-nav {
+  @apply max-w-[640px] w-full mx-auto min-h-screen;
+}
+
 .form-input {
   @apply flex flex-col gap-1 w-full;
 }
