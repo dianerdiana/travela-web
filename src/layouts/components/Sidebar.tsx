@@ -3,17 +3,28 @@
 import { NavItemProps } from "@/navigation/admin";
 import { usePathname } from "next/navigation";
 import NavItem from "./NavItem";
+import { useSidebarContext } from "@/configs/SidebarContext";
+import cn from "classnames";
 
 type SidebarProps = {
   navMenu: NavItemProps[];
 };
 
 export default function Sidebar({ navMenu }: SidebarProps) {
+  const { open } = useSidebarContext();
   const pathname = usePathname();
 
   return (
-    <aside className="p-[30px] bg-[#FBFBFB] w-[270px] min-h-screen shrink-0 border-e-[1px]">
-      <div className="fixed flex flex-col gap-[30px] w-[210px]">
+    <aside
+      className={cn(
+        "!z-40 p-[30px] bg-[#FBFBFB] min-h-screen shrink-0 border-e-[1px] transition-transform duration-300 ease-in-out",
+        {
+          "translate-x-0": open,
+          "-translate-x-full": !open,
+        }
+      )}
+    >
+      <div className="flex flex-col gap-[30px] w-[210px]">
         <div className="flex flex-row items-center justify-center nav-brand">
           <img src="/assets/logos/logo.svg" alt="logo" className="me-3" />
           <h1 className="text-xl font-extrabold">BrandLogo</h1>
