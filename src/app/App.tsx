@@ -7,7 +7,7 @@ export default function App() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/home");
+    router.replace("/home");
   }, [router]);
 
   return null;

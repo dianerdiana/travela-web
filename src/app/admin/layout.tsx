@@ -1,6 +1,7 @@
 import React from "react";
+import dynamic from "next/dynamic";
 
-import AdminLayout from "@/layouts/AdminLayout";
+const AdminLayout = dynamic(() => import("@/layouts/AdminLayout"));
 
 type LayoutProps = {
   children: React.ReactNode;

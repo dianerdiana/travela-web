@@ -8,11 +8,14 @@ type RedirectProps = {
 };
 
 export default function Redirect({ to }: RedirectProps) {
+  console.log("apapapa");
   const router = useRouter();
 
   useEffect(() => {
-    router.push(to);
-  }, [router]);
+    if (to) {
+      router.replace(to);
+    }
+  }, [router, to]);
 
-  return null;
+  return <p>Redirecting...</p>;
 }

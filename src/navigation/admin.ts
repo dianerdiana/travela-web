@@ -1,32 +1,28 @@
-import type { IconType } from "react-icons";
-
 // ** Icons
-import { FiHome, FiTag } from "react-icons/fi";
+import { Icon } from "@iconify/react";
 
-export type NavItemProps = {
+export type SideNavItem = {
   isHeader?: boolean;
-  title?: string;
-  name: string;
+  title: string;
+  icon?: string;
   href?: string;
-  icon?: IconType;
-  children?: NavItemProps;
+  subMenu?: boolean;
+  subMenuItems?: SideNavItem[];
 };
 
-const navigation: NavItemProps[] = [
+const navigation: SideNavItem[] = [
   {
-    name: "DAILY USE",
+    title: "DAILY USE",
     isHeader: true,
   },
   {
     title: "Dashboard",
-    name: "Dashboard",
-    icon: FiHome,
+    icon: "mdi:home",
     href: "/admin/dashboard",
   },
   {
     title: "Category",
-    name: "Category",
-    icon: FiTag,
+    icon: "mdi:tag",
     href: "/admin/category",
   },
 ];

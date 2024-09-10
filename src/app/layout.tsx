@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
-import SidebarContextProvider from "@/configs/SidebarContext";
-
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -22,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} text-customDark`}>
-        <SidebarContextProvider>{children}</SidebarContextProvider>
-      </body>
+      <body className={`${poppins.className} text-customDark`}>{children}</body>
     </html>
   );
 }
