@@ -1,12 +1,5 @@
-import dynamic from "next/dynamic";
-
-// ** Components
-const App = dynamic(() => import("./App"));
+import Redirect from "@/components/Redirect";
 
 export default function Home() {
-  return (
-    <>
-      <App />
-    </>
-  );
+  return <Redirect to="/home" />;
 }

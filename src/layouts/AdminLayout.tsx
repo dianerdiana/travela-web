@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/clsx/cn";
 
+import { type SidenavItem } from "@/navigation/admin";
+
 const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
 
@@ -33,45 +35,6 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <span className="text-xl font-extrabold ms-3">BrandLogo</span>
             </div>
           </Link>
-          <ul className="space-y-3">
-            <li>
-              <h4 className="text-xs font-bold text-gray-400">DAILY USAGE</h4>
-            </li>
-            <li>
-              <Link
-                href="/admin/dashboard"
-                className={cn(
-                  "flex items-center justify-center leading-10 rounded-full group hover:bg-primary-300",
-                  {
-                    "bg-primary text-white": pathname === "/admin/dashboard",
-                  }
-                )}
-              >
-                <Icon icon="mdi:home" className="w-6 h-6 group-hover:text-white" />
-                <span className="font-semibold ms-3 group-hover:text-white">Dashboard</span>
-              </Link>
-            </li>
-            <li>
-              <Accordion title="Category">
-                <ul>
-                  <li>
-                    <Link
-                      href="/admin/dashboard"
-                      className={cn(
-                        "flex items-center justify-center leading-10 rounded-full group hover:bg-primary-300",
-                        {
-                          "bg-primary text-white": pathname === "/admin/dashboard",
-                        }
-                      )}
-                    >
-                      <Icon icon="mdi:home" className="w-6 h-6 group-hover:text-white" />
-                      <span className="font-semibold ms-3 group-hover:text-white">Dashboard</span>
-                    </Link>
-                  </li>
-                </ul>
-              </Accordion>
-            </li>
-          </ul>
         </div>
       </aside>
 
@@ -111,23 +74,47 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 export default AdminLayout;
 
-type AccordionProps = {
-  title: string;
-  children: React.ReactNode;
+const SidenavMenuTitle = ({ title }: SidenavItem) => {
+  return <h4 className="text-xs font-bold text-gray-400">{title}</h4>;
 };
 
-const Accordion = ({ title, children }: AccordionProps) => {
+const SidenavMenuItem = ({ active, icon, title, href }: SidenavItem & { active: boolean }) => {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "flex items-center justify-center leading-10 rounded-full group hover:bg-primary-300",
+        {
+          "bg-primary text-white": active,
+        }
+      )}
+    >
+      <Icon
+        icon={icon ? icon : "mdi:professional-hexagon"}
+        className="w-6 h-6 group-hover:text-white"
+      />
+      <span className="font-semibold ms-3 group-hover:text-white">{title}</span>
+    </Link>
+  );
+};
+
+const SidenavSubMenu = ({
+  title,
+  subMenuItems,
+  children,
+}: SidenavItem & { children: React.ReactNode }) => {
+  // ** State
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const toggleAccordion = () => {
+  const toggleSidenavSubMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <div className="mb-2 border border-gray-200 rounded-md">
       <button
-        onClick={toggleAccordion}
+        onClick={toggleSidenavSubMenu}
         className="w-full px-4 py-2 text-left bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
       >
         <div className="flex items-center justify-between">
@@ -135,7 +122,6 @@ const Accordion = ({ title, children }: AccordionProps) => {
           <span>{isOpen ? "-" : "+"}</span>
         </div>
       </button>
-      {/* Container with transition */}
       <div
         ref={contentRef}
         style={{

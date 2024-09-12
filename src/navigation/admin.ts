@@ -1,19 +1,18 @@
 // ** Icons
-import { Icon } from "@iconify/react";
-
-export type SideNavItem = {
+export type SidenavItem = {
   isHeader?: boolean;
   title: string;
   icon?: string;
-  href?: string;
+  href: string;
   subMenu?: boolean;
-  subMenuItems?: SideNavItem[];
+  subMenuItems?: SidenavItem[];
 };
 
-const navigation: SideNavItem[] = [
+const navigation: SidenavItem[] = [
   {
     title: "DAILY USE",
     isHeader: true,
+    href: "/",
   },
   {
     title: "Dashboard",
