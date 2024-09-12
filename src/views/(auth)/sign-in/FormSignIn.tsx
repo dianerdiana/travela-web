@@ -26,7 +26,10 @@ export default function FormSignIn() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="card py-5 px-4 flex flex-col items-center gap-8">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="card py-5 px-4 flex flex-col items-center gap-8"
+    >
       <div className="flex flex-col items-center">
         <h3 className="text-2xl font-semibold leading-[42px] mb-1">Sign In</h3>
         <p className="text-sm text-secondary-500 leading-[25px] tracking-[0.6px]">
@@ -42,7 +45,11 @@ export default function FormSignIn() {
             control={control}
             name="email"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.email ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.email ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="/assets/icons/sms.svg" alt="email-icon" />
                 </div>
@@ -70,7 +77,11 @@ export default function FormSignIn() {
             control={control}
             name="password"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.password ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.password ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="/assets/icons/password-lock.svg" alt="password-icon" />
                 </div>

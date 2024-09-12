@@ -51,7 +51,10 @@ export default function FormSignUp() {
   const toggleShowConfirmPassword = () => setShowConfirmPassword((prevState) => !prevState);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="card py-5 px-4 flex flex-col items-center gap-8">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="card py-5 px-4 flex flex-col items-center gap-8"
+    >
       <div className="flex flex-col items-center">
         <h3 className="text-2xl font-semibold leading-[42px] mb-1">Sign Up</h3>
         <p className="text-sm text-secondary-500 leading-[25px] tracking-[0.6px]">
@@ -67,11 +70,20 @@ export default function FormSignUp() {
             control={control}
             name="avatar"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.avatar ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.avatar ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="assets/icons/gallery-2.svg" alt="icon" />
                 </div>
-                <button type="button" id="upload-file" className="flex items-center gap-3" onClick={handleChangeAvatar}>
+                <button
+                  type="button"
+                  id="upload-file"
+                  className="flex items-center gap-3"
+                  onClick={handleChangeAvatar}
+                >
                   <div
                     ref={chooseFileRef}
                     className="input-border bg-secondary-50 py-1 px-2 rounded-lg text-nowrap text-sm leading-[22px] tracking-035 h-fit"
@@ -83,7 +95,10 @@ export default function FormSignUp() {
                       {avatarFile ? avatarFile : "No file choosen"}
                     </p>
                     <div id="file-info" className="flex flex-row flex-nowrap gap-3 items-center">
-                      <span id="fileName" className="text-sm tracking-035 leading-[22px] text-nowrap"></span>
+                      <span
+                        id="fileName"
+                        className="text-sm tracking-035 leading-[22px] text-nowrap"
+                      ></span>
                     </div>
                   </div>
                   <input
@@ -121,7 +136,11 @@ export default function FormSignUp() {
             control={control}
             name="fullName"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.fullName ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.fullName ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="/assets/icons/user.svg" alt="fullName-icon" />
                 </div>
@@ -149,7 +168,11 @@ export default function FormSignUp() {
             control={control}
             name="phoneNumber"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.phoneNumber ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.phoneNumber ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="/assets/icons/telephone.svg" alt="phoneNumber-icon" />
                 </div>
@@ -177,7 +200,11 @@ export default function FormSignUp() {
             control={control}
             name="email"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.email ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.email ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="/assets/icons/sms.svg" alt="email-icon" />
                 </div>
@@ -205,7 +232,11 @@ export default function FormSignUp() {
             control={control}
             name="password"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.password ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.password ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="/assets/icons/password-lock.svg" alt="password-icon" />
                 </div>
@@ -220,7 +251,11 @@ export default function FormSignUp() {
                 />
                 <div className="input-icon cursor-pointer" onClick={toggleShowPassword}>
                   <img
-                    src={showPassword ? "/assets/icons/password-eye.svg" : "/assets/icons/password-eye-slash.svg"}
+                    src={
+                      showPassword
+                        ? "/assets/icons/password-eye.svg"
+                        : "/assets/icons/password-eye-slash.svg"
+                    }
                     alt="password-icon"
                   />
                 </div>
@@ -239,7 +274,11 @@ export default function FormSignUp() {
             control={control}
             name="confirmPassword"
             render={({ field }) => (
-              <div className={`input-wrapper ${errors.confirmPassword ? "input-border-invalid" : "input-border"}`}>
+              <div
+                className={`input-wrapper ${
+                  errors.confirmPassword ? "input-border-invalid" : "input-border"
+                }`}
+              >
                 <div className="input-icon">
                   <img src="/assets/icons/password-lock.svg" alt="password-icon" />
                 </div>
@@ -255,7 +294,9 @@ export default function FormSignUp() {
                 <div className="input-icon cursor-pointer" onClick={toggleShowConfirmPassword}>
                   <img
                     src={
-                      showConfirmPassword ? "/assets/icons/password-eye.svg" : "/assets/icons/password-eye-slash.svg"
+                      showConfirmPassword
+                        ? "/assets/icons/password-eye.svg"
+                        : "/assets/icons/password-eye-slash.svg"
                     }
                     alt="password-icon"
                   />
