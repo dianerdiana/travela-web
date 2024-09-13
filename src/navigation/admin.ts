@@ -8,7 +8,7 @@ export type SidenavItem = {
   subMenuItems?: SidenavItem[];
 };
 
-const navigation: SidenavItem[] = [
+export const navigation: SidenavItem[] = [
   {
     title: "DAILY USE",
     isHeader: true,
@@ -24,6 +24,22 @@ const navigation: SidenavItem[] = [
     icon: "mdi:tag",
     href: "/admin/category",
   },
+  {
+    title: "Category Sub",
+    icon: "mdi:tag",
+    href: "/admin/category",
+    subMenu: true,
+    subMenuItems: [
+      {
+        title: "Item 1",
+        icon: "mdi:circle-outline",
+        href: "/admin/item-1",
+      },
+      {
+        title: "Item 2",
+        icon: "mdi:circle-outline",
+        href: "/admin/item-2",
+      },
+    ],
+  },
 ];
-
-export default navigation;

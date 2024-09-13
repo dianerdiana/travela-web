@@ -1,13 +1,19 @@
 "use client";
 
+// React Imports
 import React, { useRef, useState } from "react";
+
+// Next
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+
+// Thirdparty
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/clsx/cn";
 
-import { type SidenavItem } from "@/navigation/admin";
+// Type
+import { navigation, type SidenavItem } from "@/navigation/admin";
 
 const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
@@ -35,6 +41,21 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <span className="text-xl font-extrabold ms-3">BrandLogo</span>
             </div>
           </Link>
+          <nav>
+            <ul className="space-y-2">
+              {navigation.map((nav, idx) => (
+                <li key={idx + 1}>
+                  {nav.isHeader ? (
+                    <SidenavMenuHeader title={nav.title} href={nav.href} />
+                  ) : nav.subMenu ? (
+                    <SidenavSubmenu pathname={pathname} {...nav} />
+                  ) : (
+                    <SidenavMenuItem active={nav.href === pathname} {...nav} />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </aside>
 
@@ -74,7 +95,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 export default AdminLayout;
 
-const SidenavMenuTitle = ({ title }: SidenavItem) => {
+const SidenavMenuHeader = ({ title }: SidenavItem) => {
   return <h4 className="text-xs font-bold text-gray-400">{title}</h4>;
 };
 
@@ -83,7 +104,7 @@ const SidenavMenuItem = ({ active, icon, title, href }: SidenavItem & { active: 
     <Link
       href={href}
       className={cn(
-        "flex items-center justify-center leading-10 rounded-full group hover:bg-primary-300",
+        "flex items-center px-3 leading-10 rounded-full group hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary-200",
         {
           "bg-primary text-white": active,
         }
@@ -98,11 +119,33 @@ const SidenavMenuItem = ({ active, icon, title, href }: SidenavItem & { active: 
   );
 };
 
-const SidenavSubMenu = ({
+const SidenavSubmenuItem = ({ active, icon, title, href }: SidenavItem & { active: boolean }) => {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "flex items-center px-3 leading-10 rounded-full group hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary-200",
+        {
+          "bg-primary text-white": active,
+        }
+      )}
+    >
+      <Icon
+        icon={icon ? icon : "mdi:professional-hexagon"}
+        className="w-4 h-4 group-hover:text-white"
+      />
+      <span className="font-semibold ms-3 group-hover:text-white">{title}</span>
+    </Link>
+  );
+};
+
+const SidenavSubmenu = ({
+  href,
+  icon,
   title,
+  pathname,
   subMenuItems,
-  children,
-}: SidenavItem & { children: React.ReactNode }) => {
+}: SidenavItem & { pathname: string }) => {
   // ** State
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -112,15 +155,31 @@ const SidenavSubMenu = ({
   };
 
   return (
-    <div className="mb-2 border border-gray-200 rounded-md">
+    <div className="space-y-1 rounded-full">
       <button
         onClick={toggleSidenavSubMenu}
-        className="w-full px-4 py-2 text-left bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className={cn(
+          "w-full flex items-center px-3 leading-10 rounded-full group hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary-200",
+          {
+            "bg-primary text-white": href.includes("pathname"),
+          }
+        )}
       >
-        <div className="flex items-center justify-between">
-          <span>{title}</span>
-          <span>{isOpen ? "-" : "+"}</span>
-        </div>
+        <Icon
+          icon={icon ? icon : "mdi:professional-hexagon"}
+          className="w-6 h-6 group-hover:text-white"
+        />
+        <span className="font-semibold ms-3 group-hover:text-white">{title}</span>
+
+        <Icon
+          icon="ri:arrow-up-s-line"
+          className={cn(
+            "w-6 h-6 group-hover:text-white ms-auto transition-transform duration-200",
+            {
+              "rotate-180": isOpen,
+            }
+          )}
+        />
       </button>
       <div
         ref={contentRef}
@@ -129,7 +188,13 @@ const SidenavSubMenu = ({
         }}
         className={`overflow-hidden transition-max-height duration-500 ease-in-out`}
       >
-        <div className="px-4 py-2 bg-gray-100">{children}</div>
+        <ul>
+          {subMenuItems?.map((nav, idx) => (
+            <li key={idx + 1}>
+              <SidenavSubmenuItem active={nav.href === pathname} {...nav} />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
