@@ -1,4 +1,4 @@
-import HomeWrapper from "@/views/home";
+import HomeWrapper from "@/views/(float)/home";
 
 export default function Home() {
   return <HomeWrapper />;

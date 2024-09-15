@@ -1,9 +1,6 @@
 // ** Next
 import dynamic from "next/dynamic";
 
-// ** Layout
-import FloatNavLayout from "@/layouts/FloatNavLayout";
-
 // ** Components
 const Categories = dynamic(() => import("./Categories"));
 const TripRecommendations = dynamic(() => import("./TripRecommendations"));
@@ -12,13 +9,13 @@ const Explore = dynamic(() => import("./Explore"));
 
 export default function HomeWrapper() {
   return (
-    <FloatNavLayout>
-      <nav className="mt-8 w-full flex items-center justify-between">
+    <>
+      <nav className="flex items-center justify-between w-full mt-8">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 border-4 border-white rounded-full overflow-hidden flex shrink-0 shadow-[6px_8px_20px_0_#00000008]">
             <img
               src="assets/photos/pfp.png"
-              className="w-full h-full object-cover object-center"
+              className="object-cover object-center w-full h-full"
               alt="photo"
             />
           </div>
@@ -54,6 +51,6 @@ export default function HomeWrapper() {
         <h2 className="font-semibold">More to Explore</h2>
         <Explore />
       </div>
-    </FloatNavLayout>
+    </>
   );
 }
