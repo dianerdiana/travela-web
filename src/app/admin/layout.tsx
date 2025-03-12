@@ -5,7 +5,6 @@ import AppHeader from "@/layout/AppHeader";
 import AppSidebar from "@/layout/AppSidebar";
 import Backdrop from "@/layout/Backdrop";
 import React from "react";
-import "./admin.css";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { isExpanded, isHovered, isMobileOpen } = useSidebar();
@@ -18,7 +17,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     : "lg:ml-[90px]";
 
   return (
-    <div className="min-h-screen xl:flex bg-white dark:bg-gray-900">
+    <div className="min-h-screen xl:flex bg-gray-50 dark:bg-gray-900">
       {/* Sidebar and Backdrop */}
       <AppSidebar />
       <Backdrop />
