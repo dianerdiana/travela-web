@@ -17,7 +17,7 @@ export default function SignUp() {
         >
           <div className="flex flex-col gap-1 text-center">
             <h1 className="font-semibold text-2xl leading-[42px]">Sign Up</h1>
-            <p className="text-sm leading-[25px] tracking-[0.6px] text-darkGrey">
+            <p className="text-sm leading-[25px] tracking-[0.6px] text-trv-light-9">
               Enter valid data to create your account
             </p>
           </div>
@@ -145,7 +145,7 @@ export default function SignUp() {
           >
             Sign up
           </button>
-          <p className="text-center text-sm tracking-035 text-darkGrey">
+          <p className="text-center text-sm tracking-035 text-trv-light-9">
             Already have an account? &nbsp;
             <a href="index.html" className="text-trv-blue-9 font-semibold tracking-[0.6px]">
               Sign In

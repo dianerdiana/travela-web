@@ -13,6 +13,8 @@ import { NavItem } from "@/navigation/type";
 import { mainItems } from "@/navigation/main";
 import { othersItems } from "@/navigation/other";
 
+import { appConfig } from "@/config/appConfig";
+
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
@@ -212,21 +214,21 @@ const AppSidebar: React.FC = () => {
             <>
               <Image
                 className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src={appConfig.appLogo}
                 alt="Logo"
-                width={150}
+                width={40}
                 height={40}
               />
               <Image
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src={appConfig.appLogo}
                 alt="Logo"
-                width={150}
+                width={40}
                 height={40}
               />
             </>
           ) : (
-            <Image src="/images/logo/logo-icon.svg" alt="Logo" width={32} height={32} />
+            <Image src={appConfig.appLogo} alt="Logo" width={32} height={32} />
           )}
         </Link>
       </div>

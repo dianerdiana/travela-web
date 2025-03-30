@@ -9,6 +9,7 @@ import { useSidebar } from "@/context/SidebarContext";
 import ThemeToggleButton from "./components/ThemeToggleButton";
 import NotificationDropdown from "./components/NotificationDropdown";
 import UserDropdown from "./components/UserDropdown";
+import { appConfig } from "@/config/appConfig";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
@@ -88,17 +89,17 @@ const AppHeader: React.FC = () => {
 
           <Link href="/" className="lg:hidden">
             <Image
-              width={154}
+              width={32}
               height={32}
               className="dark:hidden"
-              src="./images/logo/logo.svg"
+              src={appConfig.appLogo}
               alt="Logo"
             />
             <Image
-              width={154}
+              width={32}
               height={32}
               className="hidden dark:block"
-              src="./images/logo/logo-dark.svg"
+              src={appConfig.appLogo}
               alt="Logo"
             />
           </Link>
@@ -126,7 +127,7 @@ const AppHeader: React.FC = () => {
           <div className="hidden lg:block">
             <form>
               <div className="relative">
-                <span className="absolute -translate-y-1/2 left-4 top-1/2 pointer-events-none">
+                <span className="absolute -translate-y-1/2 pointer-events-none left-4 top-1/2">
                   <svg
                     className="fill-gray-500 dark:fill-gray-400"
                     width="20"

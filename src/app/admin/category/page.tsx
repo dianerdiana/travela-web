@@ -1,3 +1,5 @@
-export default function AdminCategory() {
-  return <div>Admin Kategori</div>;
+import DataTableCategory from "@/views/category/components/DataTable";
+
+export default async function Page() {
+  return <DataTableCategory />;
 }

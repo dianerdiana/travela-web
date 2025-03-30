@@ -15,7 +15,7 @@ export default function SignIn() {
         >
           <div className="flex flex-col gap-1 text-center">
             <h1 className="font-semibold text-2xl leading-[42px]">Sign In</h1>
-            <p className="text-sm leading-[25px] tracking-[0.6px] text-darkGrey">
+            <p className="text-sm leading-[25px] tracking-[0.6px] text-trv-light-9">
               Welcome Back! Enter your valid data
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function SignIn() {
           >
             Sign In
           </button>
-          <p className="text-center text-sm tracking-035 text-darkGrey">
+          <p className="text-center text-sm tracking-035 text-trv-light-9">
             Don’t have account? &nbsp;
             <a href="signup.html" className="text-trv-blue-9 font-semibold tracking-[0.6px]">
               Sign Up
